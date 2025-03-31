@@ -63,15 +63,14 @@ public class GameController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<Models.Game>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAllAsync()
     {
-        return Ok(new List<Models.Game>
+        var games = await _repo.GetAllAsync();
+
+        return Ok(games.Select(g => new Models.Game
         {
-            new Models.Game
-            {
-                GameId = Guid.NewGuid().ToString(),
-                Name = "Game Name",
-                Description = "Game Description",
-                ReleaseDate = DateTime.Now
-            }
-        });
+            GameId = g.GameId.ToString(),
+            Name = g.Name,
+            Description = g.Description,
+            ReleaseDate = g.ReleaseDate
+        }));
     }
 }

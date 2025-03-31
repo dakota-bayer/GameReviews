@@ -20,9 +20,14 @@ namespace GameReviews.Infrastructure
             return game;
         }
 
-        public Task<Game> GetAsync(Guid id)
+        public async Task<IEnumerable<Game>> GetAllAsync()
         {
-            return _dbContext.Games.FirstOrDefaultAsync(g => g.GameId == id);
+            return await _dbContext.Games.ToListAsync();
+        }
+
+        public async Task<Game> GetAsync(Guid id)
+        {
+            return await _dbContext.Games.FirstOrDefaultAsync(g => g.GameId == id);
         }
     }
 }
