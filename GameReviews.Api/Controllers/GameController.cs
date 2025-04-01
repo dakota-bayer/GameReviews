@@ -1,4 +1,5 @@
-﻿using GameReviews.Domain;
+﻿using GameReviews.Contracts.Models;
+using GameReviews.Domain;
 using GameReviews.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,69 +9,45 @@ namespace GameReviews.Api.Controllers;
 [Route("[controller]")]
 public class GameController : ControllerBase
 {
-    private readonly IGameRepository _repo;
+    private readonly IGameService _service;
 
-    public GameController(IGameRepository repo) : base()
+    public GameController(IGameService service) : base()
     {
-        _repo = repo;
+        _service = service;
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(Models.Game), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(Game), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] Models.Game game)
+    public async Task<IActionResult> CreateAsync([FromBody] GameCreateRequest request)
     {
-        var newGame = await _repo.CreateAsync(new GameReviews.Entities.Game
-        {
-            GameId = Guid.NewGuid(),
-            Name = game.Name,
-            Description = game.Description,
-            ReleaseDate = game.ReleaseDate
-        });
+        var game = await _service.CreateAsync(request);
 
-        return CreatedAtAction(nameof(GetAsync), new { id = newGame.GameId }, new Models.Game
-        {
-            GameId = newGame.GameId.ToString(),
-            Name = newGame.Name,
-            Description = newGame.Description,
-            ReleaseDate = newGame.ReleaseDate
-        });
+        return CreatedAtAction(nameof(GetAsync), new { id = game.GameId }, game);
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(Models.Game), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Game), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAsync(string id)
     {
-        var game = await _repo.GetAsync(Guid.Parse(id));
+        var game = await _service.GetAsync(Guid.Parse(id));
 
         if (game == null)
         {
             return NotFound("Game not found!");
         }
 
-        return Ok(new Models.Game
-        {
-            GameId = game.GameId.ToString(),
-            Name = game.Name,
-            Description = game.Description,
-            ReleaseDate = game.ReleaseDate
-        });
+        return Ok(game);
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Models.Game>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<Game>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAllAsync()
     {
-        var games = await _repo.GetAllAsync();
+        var games = await _service.GetAllAsync();
 
-        return Ok(games.Select(g => new Models.Game
-        {
-            GameId = g.GameId.ToString(),
-            Name = g.Name,
-            Description = g.Description,
-            ReleaseDate = g.ReleaseDate
-        }));
+        return Ok(games);
     }
 }

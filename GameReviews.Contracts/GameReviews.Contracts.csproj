@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GameReviews.Contracts\GameReviews.Contracts.csproj" />
-    <ProjectReference Include="..\GameReviews.Entities\GameReviews.Entities.csproj" />
-  </ItemGroup>
-
 </Project>

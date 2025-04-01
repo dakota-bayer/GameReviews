@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameReviews.Api", "GameReviews.Api\GameReviews.Api.csproj", "{C80A577B-B6BE-416C-8989-6FF900128B05}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameReviews.Domain", "GameReviews.Domain\GameReviews.Domain.csproj", "{4CBAB557-E93E-4045-A3EB-995D3348280D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameReviews.Entities", "GameReviews.Entities\GameReviews.Entities.csproj", "{3BF5F770-160F-4FC0-A326-21BC3A6A53BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameReviews.Contracts", "GameReviews.Contracts\GameReviews.Contracts.csproj", "{A080A321-4130-4935-BE3E-594D26239C37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3BF5F770-160F-4FC0-A326-21BC3A6A53BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF5F770-160F-4FC0-A326-21BC3A6A53BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF5F770-160F-4FC0-A326-21BC3A6A53BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A080A321-4130-4935-BE3E-594D26239C37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A080A321-4130-4935-BE3E-594D26239C37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A080A321-4130-4935-BE3E-594D26239C37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A080A321-4130-4935-BE3E-594D26239C37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

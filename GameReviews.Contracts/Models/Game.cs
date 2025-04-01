@@ -1,4 +1,4 @@
-﻿namespace GameReviews.Api.Models;
+﻿namespace GameReviews.Contracts.Models;
 
 public class Game
 {
@@ -10,4 +10,3 @@ public class Game
 
     public DateTime ReleaseDate { get; set; }
 }
-

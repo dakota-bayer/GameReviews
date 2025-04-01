@@ -1,4 +1,5 @@
 using GameReviews.Domain.Interfaces;
+using GameReviews.Domain.Services;
 using GameReviews.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,7 @@ public class Program
             opt.UseNpgsql(builder.Configuration.GetConnectionString("GamesDb"));
         });
 
+        builder.Services.AddScoped<IGameService, GameService>();
         builder.Services.AddScoped<IGameRepository, GameRepository>();
 
         var app = builder.Build();
